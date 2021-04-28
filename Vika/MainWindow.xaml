@@ -1,0 +1,56 @@
+﻿<Window x:Class="Vika.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Vika"
+        mc:Ignorable="d"
+        Title="Registration" Height="600" Width="1000" MinHeight="600" MinWidth="1000">
+    <Grid Background="RosyBrown">
+
+        <!--Фон-->
+        <Border Background="White" Width="800" Height="500">
+            <Grid>
+                <StackPanel>
+
+                    <!--Кнопки "Регистрация" и "Вход"-->
+                    <StackPanel Height="60" Orientation="Horizontal">
+                        <Button Background="Gold" Width="380"  Content="Регистрация" FontSize="30" FontWeight="Black" Foreground="DimGray" Margin="5"/>
+                        <Button x:Name="perehod" Width="400"  Content="Вход" FontSize="30" FontWeight="Black" Foreground="DimGray" Margin="5" Click="perehod_Click"/>
+                    </StackPanel>
+
+                    <!--Разделитель-->
+                    <Border Background="RosyBrown" Width="800" Height="10"/>
+
+                    <!--Поле с вводом данным-->
+                    <StackPanel Orientation="Horizontal" Height="350">
+                        <StackPanel>
+                            <Label Width="400" HorizontalContentAlignment="Right" Content="Логин: " FontSize="30"/>
+                            <Label Width="400" HorizontalContentAlignment="Right" Content="Пароль: " FontSize="30"/>
+                            <Label Width="400" HorizontalContentAlignment="Right" Content="ФИО: " FontSize="30"/>
+                            <Label Width="400" HorizontalContentAlignment="Right" Content="Почта: " FontSize="30"/>
+                            <Label Width="400" HorizontalContentAlignment="Right" Content="Телефон: " FontSize="30"/>
+                            <Label Width="400" HorizontalContentAlignment="Right" Content="Пол: " FontSize="30"/>
+                            <Label Width="400" HorizontalContentAlignment="Right" Content="Должность: " FontSize="30"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBox x:Name="loginText" Height="50" Width="400" FontSize="30"/>
+                            <PasswordBox x:Name="parolText" Height="50" Width="400" FontSize="30"/>
+                            <TextBox x:Name="imiaText" Height="50" Width="400" FontSize="30"/>
+                            <TextBox x:Name="pochtaText" Height="50" Width="400" FontSize="30"/>
+                            <TextBox x:Name="telefonText" Height="50" Width="400" FontSize="30"/>
+                            <TextBox x:Name="polText" Height="50" Width="400" FontSize="30"/>
+                            <TextBox x:Name="positionText" Height="50" Width="400" FontSize="30"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!--Разделитель-->
+                    <Border Background="RosyBrown" Width="800" Height="10"/>
+
+                    <!--Кнопка "Зарегестрироваться"-->
+                    <Button Background="Gold" x:Name="registr" Width="300" Height="60" Content="Зарегестрироваться" FontSize="25" FontWeight="Black" Foreground="DimGray" Click="registr_Click" Margin="5"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,57 @@
+﻿<Window x:Class="Vika.Edit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Vika"
+        mc:Ignorable="d"
+        Title="Authorization" Height="600" Width="1000" MinHeight="600" MinWidth="1000">
+    <Grid Background="RosyBrown">
+        <Border Background="White" Width="900" Height="500">
+            <Grid>
+                <StackPanel>
+                    <!--Заголовок-->
+                    <Label Content="Кабинет редактирования" FontSize="30" FontWeight="Black" Foreground="DimGray" Margin="250 0 0 0"/>
+                    <!--Разделитель-->
+                    <Border Background="RosyBrown" Width="800" Height="10"/>
+
+                    <!--Содержимое-->
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel>
+                                <Label Name="loginL" Width="400" HorizontalContentAlignment="Right" Content="Логин: " FontSize="25"/>
+                                <Label Name="parolL" Width="400" HorizontalContentAlignment="Right" Content="Пароль: " FontSize="25"/>
+                                <Label Name="fioL" Width="400" HorizontalContentAlignment="Right" Content="ФИО: " FontSize="25"/>
+                                <Label Name="pochtaL" Width="400" HorizontalContentAlignment="Right" Content="Почта: " FontSize="25"/>
+                                <Label Name="telefonL" Width="400" HorizontalContentAlignment="Right" Content="Телефон: " FontSize="25"/>
+                                <Label Name="polL" Width="400" HorizontalContentAlignment="Right" Content="Пол: " FontSize="25"/>
+                                <Label Name="dolzhnostL" Width="400" HorizontalContentAlignment="Right" Content="Должность: " FontSize="25"/>
+                                <Label Name="rolL" Width="400" HorizontalContentAlignment="Right" Content="Роль: " FontSize="25"/>
+                            </StackPanel>
+                            <StackPanel>
+                                <TextBox x:Name="loginText" Height="45" Width="400" FontSize="25"/>
+                                <PasswordBox x:Name="parolText" Height="45" Width="400" FontSize="25"/>
+                                <TextBox x:Name="imiaText" Height="45" Width="400" FontSize="25"/>
+                                <TextBox x:Name="pochtaText" Height="45" Width="400" FontSize="25"/>
+                                <TextBox x:Name="telefonText" Height="45" Width="400" FontSize="25"/>
+                                <TextBox x:Name="polText" Height="45" Width="400" FontSize="25"/>
+                                <TextBox x:Name="positionText" Height="45" Width="400" FontSize="25"/>
+                                <TextBox x:Name="rolText" Height="40" Width="400" FontSize="25" MaxLength="1"/>
+                                <Label Name="rolExpl" Content="1-Администратор 2-Пользователь 3-Разработчик" FontSize="15"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button x:Name="delete" Content="Удалить" FontSize="20" FontWeight="Black" Foreground="DimGray" Width="200" Height="50" Background="Gold" Margin="0 0 30 0" Visibility="Hidden"  Click="delete_Click"/>
+                            <Button x:Name="add" Content="Добавить" FontSize="20" FontWeight="Black" Foreground="DimGray" Width="200" Height="50" Background="Gold" Click="add_Click"/>
+                            <Button x:Name="deleteion" Content="Удаление" FontSize="20" FontWeight="Black" Foreground="DimGray" Width="200" Height="50" Background="Gold" Margin="30 0 0 0" Click="deleteion_Click"/>
+                            <Button x:Name="addition" Content="Добавление" FontSize="20" FontWeight="Black" Foreground="DimGray" Width="200" Height="50" Background="Gold" Margin="30 0 0 0" Visibility="Hidden" Click="addition_Click" />
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
+                <!--Кнопка "Выход"-->
+                <Button Content="Выход" FontSize="20" FontWeight="Black" Foreground="DimGray" Width="100" Height="50" Background="Gold" HorizontalAlignment="Right" VerticalAlignment="Top" Click="Vihod_Click"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

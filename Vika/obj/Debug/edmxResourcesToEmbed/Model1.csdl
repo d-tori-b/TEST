@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RegistraciaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Dolzhnost">
+    <Key>
+      <PropertyRef Name="CodRol" />
+    </Key>
+    <Property Name="CodRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rol" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Persona" Relationship="Self.FK_Persona_Dolzhnost" FromRole="Dolzhnost" ToRole="Persona" />
+  </EntityType>
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="CodPerson" />
+    </Key>
+    <Property Name="CodPerson" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LoginReg" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="ParolReg" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="Imia" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="Telefon" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="Pochta" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="CodRol" Type="Int32" />
+    <NavigationProperty Name="Dolzhnost" Relationship="Self.FK_Persona_Dolzhnost" FromRole="Persona" ToRole="Dolzhnost" />
+    <NavigationProperty Name="Polzovatel" Relationship="Self.FK_Polzovatel_Persona" FromRole="Persona" ToRole="Polzovatel" />
+  </EntityType>
+  <EntityType Name="Polzovatel">
+    <Key>
+      <PropertyRef Name="CodPolzovatel" />
+    </Key>
+    <Property Name="CodPolzovatel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LoginVhod" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="ParolVhod" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="CodPerson" Type="Int32" />
+    <NavigationProperty Name="Persona" Relationship="Self.FK_Polzovatel_Persona" FromRole="Polzovatel" ToRole="Persona" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Persona_Dolzhnost">
+    <End Role="Dolzhnost" Type="Self.Dolzhnost" Multiplicity="0..1" />
+    <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dolzhnost">
+        <PropertyRef Name="CodRol" />
+      </Principal>
+      <Dependent Role="Persona">
+        <PropertyRef Name="CodRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Polzovatel_Persona">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+    <End Role="Polzovatel" Type="Self.Polzovatel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="CodPerson" />
+      </Principal>
+      <Dependent Role="Polzovatel">
+        <PropertyRef Name="CodPerson" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RegistraciaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Dolzhnost" EntityType="Self.Dolzhnost" />
+    <EntitySet Name="Persona" EntityType="Self.Persona" />
+    <EntitySet Name="Polzovatel" EntityType="Self.Polzovatel" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_Persona_Dolzhnost" Association="Self.FK_Persona_Dolzhnost">
+      <End Role="Dolzhnost" EntitySet="Dolzhnost" />
+      <End Role="Persona" EntitySet="Persona" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Polzovatel_Persona" Association="Self.FK_Polzovatel_Persona">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Polzovatel" EntitySet="Polzovatel" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(RegistraciaModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(RegistraciaModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>
